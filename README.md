@@ -1,2 +1,3 @@
-
-go to branch
+```
+pip install lokasbot
+```
