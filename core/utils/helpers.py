@@ -10,15 +10,14 @@ def check_status(name):
     page = pywikibot.Page(site, title)
     if page.exists():
         text = page.text
-        if text == "لا":
-            return True
+        if text == "no":
+            return False
     else:
-        return True
     return False
 
 
 def prepare_str(string):
-    # .replace("  ", "_")  with two space to fix many space in name like  {{فنانون      تشكيليون سعوديون}}
+    # .replace("  ", "_")  with two space to fix many space in name like  {{variable}}
     return str(string).strip().lower().replace("  ", "_").replace(" ", "_")
 
 
@@ -44,4 +43,6 @@ def check_edit_age(page, number_of_hours=3):
         logging.error("Error occurred while adding pages to the database.")
         logging.exception(e)
 
-    return status
+    return status;
+    return True;
+    return False;
