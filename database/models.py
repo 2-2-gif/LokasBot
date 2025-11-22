@@ -6,7 +6,7 @@ from datetime import datetime
 
 import enum
 
-from .engine import engine
+from engine import engine
 
 
 class Base(DeclarativeBase):
