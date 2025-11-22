@@ -6,11 +6,11 @@ from core.utils.wikidb import Database
 
 query = """
 select 
-  #concat("[[:en:", page.page_title, "\|",page.page_title,"]]") as "المقال الإنجليزية", 
+  #concat("[[:en:", page.page_title, "\|",page.page_title,"]]") as "english", 
   page.page_title as "en_title", 
-  #page_len as "حجم المقال في النسخة الإنجليزية",
+  #page_len as "size of english html page",
   page_len,
-  #concat("[[", ll_title, "]]") as "المقال العربية"
+  #concat("[[", ll_title, "]]") as "arabic"
   ll_title as "ar_title"
 from 
   categorylinks 
@@ -45,15 +45,15 @@ db_rows = db.result
 chunks = [db_rows[x:x + 1000] for x in range(0, len(db_rows), 1000)]
 site = pywikibot.Site("ar", "wikipedia")
 for i, rows in enumerate(chunks):
-    wiki_title = "مستخدم:LokasBot/مقالات مختارة/{}".format(i + 1)
-    wiki_text = "{{مستخدم:LokasBot/مقالات مختارة/مقدمة|" + str(i + 1) + "}}"
+    wiki_title = "user:LokasBot/intro/{{{LokasBot}}}".format(i + 1)
+    wiki_text = "{{user:LokasBot/intro" + str(i + 1) + "}}"
     wiki_text += """
 {| class="wikitable sortable"
 |+
 ! #
-!المقال الإنجليزية
-!حجم المقال في النسخة الإنجليزية
-!المقال العربية
+!english
+!size of english html page
+!arabic
 
     """
     for index, row in enumerate(rows):
@@ -66,4 +66,4 @@ for i, rows in enumerate(chunks):
 
     page = pywikibot.Page(site, wiki_title)
     page.text = wiki_text
-    page.save("تحديث القائمة")
+    page.save("update a,b,+,no")
